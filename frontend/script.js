@@ -406,7 +406,6 @@ const eligibleCount = document.getElementById('eligibleCount');
 const filterCategory = document.getElementById('filterCategory');
 const filterRegion = document.getElementById('filterRegion');
 const tabs = document.querySelectorAll('.tab');
-const languageSelector = document.getElementById('language');
 
 // Initialize the page
 document.addEventListener('DOMContentLoaded', function () {
@@ -544,10 +543,73 @@ function renderAllSchemes() {
     });
 }
 
-// Multilingual support - placeholder for actual implementation
-languageSelector.addEventListener('change', function () {
 
-    // Initialize with English
-    translatePage('en');
-    alert(`Language changed to ${this.options[this.selectedIndex].text}. Actual multilingual implementation would require translation files.`);
+// Get the search input element
+const searchSchemesInput = document.getElementById('searchSchemes');
+
+// Store the last search query to avoid unnecessary re-renders
+let lastSearchQuery = "";
+
+// Enhance renderAllSchemes to accept a search query
+function renderAllSchemes(searchQuery = "") {
+    const categoryFilter = filterCategory.value;
+    const regionFilter = filterRegion.value;
+
+    // Normalize search query
+    const query = searchQuery.trim().toLowerCase();
+
+    const filteredSchemes = governmentSchemes.filter(scheme => {
+        // Category filter
+        if (categoryFilter !== 'all' && scheme.category !== categoryFilter) return false;
+        // Region filter
+        if (regionFilter !== 'all' && !scheme.region.includes(regionFilter)) return false;
+        // Search filter
+        if (query) {
+            // Search in name and description
+            const name = scheme.name.toLowerCase();
+            const description = scheme.description.toLowerCase();
+            if (!name.includes(query) && !description.includes(query)) return false;
+        }
+        return true;
+    });
+
+    allSchemes.innerHTML = '';
+
+    if (filteredSchemes.length === 0) {
+        allSchemes.innerHTML = `<div class="no-results">No schemes found matching your criteria.</div>`;
+        return;
+    }
+
+    filteredSchemes.forEach(scheme => {
+        const schemeElement = document.createElement('div');
+        schemeElement.className = 'scheme-item';
+        schemeElement.innerHTML = `
+                    <div class="scheme-header">
+                        <div class="scheme-name">${scheme.name}</div>
+                        <div class="scheme-category">${scheme.category.charAt(0).toUpperCase() + scheme.category.slice(1)}</div>
+                    </div>
+                    <div class="scheme-details">${scheme.description}</div>
+                    <div><strong>Eligibility:</strong> Age ${scheme.minAge}-${scheme.maxAge}, Income < ₹${scheme.incomeMax.toLocaleString()}</div>
+                    <div><strong>Region:</strong> ${scheme.region.map(r => r.charAt(0).toUpperCase() + r.slice(1)).join(', ')}</div>
+                `;
+        allSchemes.appendChild(schemeElement);
+    });
+}
+
+// Listen for input in the search box and re-render the schemes list
+searchSchemesInput.addEventListener('input', function () {
+    const query = this.value;
+    lastSearchQuery = query;
+    renderAllSchemes(query);
 });
+
+// Also update search results when filters change
+filterCategory.addEventListener('change', function () {
+    renderAllSchemes(lastSearchQuery);
+});
+filterRegion.addEventListener('change', function () {
+    renderAllSchemes(lastSearchQuery);
+});
+
+// Initial render with no search query
+renderAllSchemes();
