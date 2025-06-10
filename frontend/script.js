@@ -14,7 +14,8 @@ const governmentSchemes = [
         incomeMax: 100000,
         occupation: ["all"],
         gender: ["all"],
-        disability: false
+        disability: false,
+        link: "https://r.search.yahoo.com/_ylt=AwrPoWzs0UdoBgIAR0q7HAx.;_ylu=Y29sbwNzZzMEcG9zAzEEdnRpZAMEc2VjA3Ny/RV=2/RE=1750746861/RO=10/RU=https%3a%2f%2fwww.pmjdy.gov.in%2f/RK=2/RS=GCz7.gyb9moilvHYrDuOAhjA8h8-/",
     },
     {
         id: 2,
