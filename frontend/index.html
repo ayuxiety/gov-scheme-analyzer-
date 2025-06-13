@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scheme Eligibility Analyzer</title>
-
+    <link rel="icon" href="https://tse1.mm.bing.net/th?id=OIP.FION2krWp5LUFpfOO2bi8wHaHa&pid=Api&P=0&h=180"
+        type="image/x-icon">
+    <title>Govt. Scheme Eligibility Analyzer</title>
     <link rel="stylesheet" href="./style.css">
-
 </head>
 
 <body>
@@ -19,12 +19,12 @@
                     <div class="logo-text">
                         <h1>Government Scheme Eligibility Analyzer</h1>
                         <i>
-                            <p>FIND SCHEMES IN 60 SECOND'S</p>
+                            <p>FIND SCHEMES IN 60 SECONDS</p>
                         </i>
+                        <p class="subtitle">Explore <strong>100+</strong> schemes across health, education, employment,
+                            agriculture & social welfare.</p>
                     </div>
-
                 </div>
-
             </div>
         </div>
     </header>
@@ -35,11 +35,9 @@
             <div class="tab" data-tab="results">Available Schemes</div>
         </div>
 
-
         <div class="info-text">
             <strong>Note:</strong> This portal helps you find government schemes you may be eligible for based on your
-            profile.
-            Please provide accurate information for best results.
+            profile. Please provide accurate information for best results.
         </div>
 
         <div class="main-content">
@@ -50,12 +48,10 @@
                         <label for="age">Age</label>
                         <input type="number" id="age" class="form-control" min="18" max="100" required>
                     </div>
-
                     <div class="form-group">
                         <label for="income">Annual Income (₹)</label>
                         <input type="number" id="income" class="form-control" min="0" required>
                     </div>
-
                     <div class="form-group">
                         <label for="region">Region</label>
                         <select id="region" class="form-control" required>
@@ -68,7 +64,6 @@
                             <option value="northeast">Northeast India</option>
                         </select>
                     </div>
-
                     <div class="form-group">
                         <label for="occupation">Occupation</label>
                         <select id="occupation" class="form-control" required>
@@ -81,7 +76,6 @@
                             <option value="retired">Retired</option>
                         </select>
                     </div>
-
                     <div class="form-group">
                         <label>Gender</label>
                         <div class="radio-group">
@@ -99,7 +93,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="form-group">
                         <label for="disability">Do you have a disability?</label>
                         <select id="disability" class="form-control" required>
@@ -107,7 +100,6 @@
                             <option value="yes">Yes</option>
                         </select>
                     </div>
-
                     <div class="btn-group">
                         <button type="submit" class="btn">
                             <i class="icon">✓</i> Check Eligibility
@@ -120,6 +112,7 @@
             <div class="card">
                 <div id="inputResult">
                     <h2>Your Eligibility Report</h2>
+                    <p class="info-text">We currently have <strong>100+</strong> government schemes on our site.</p>
                     <p class="info-text">Please fill in your details and click "Check Eligibility" to see which
                         government schemes you qualify for.</p>
                 </div>
@@ -131,7 +124,6 @@
                             government schemes.</p>
                         <p>Here are the schemes that match your profile:</p>
                     </div>
-
                     <div class="scheme-list" id="schemeResults">
                         <!-- Results will be populated here -->
                     </div>
@@ -157,8 +149,6 @@
                         <option value="social">Social Welfare</option>
                     </select>
                 </div>
-
-
                 <div class="filter-control">
                     <label for="filterRegion">Filter by Region</label>
                     <select id="filterRegion" class="form-control">
@@ -172,7 +162,6 @@
                     </select>
                 </div>
             </div>
-
             <div class="scheme-list" id="allSchemes">
                 <!-- All schemes will be populated here -->
             </div>
@@ -187,10 +176,7 @@
         </div>
     </footer>
 
-    <script src="./script.js">
-
-    </script>
-
+    <script src="./script.js"></script>
 </body>
 
 </html>
